@@ -30,6 +30,7 @@
     __php_packages: "{{ __php_packages | reject('search','php' + php_default_version_debian + '-opcache') | list }}"
   when:
     - __php_packages is defined
+    - ansible_facts.os_family == 'Debian'
     - php_default_version_debian is version('8.5', '>=')
 
 - name: Define php_packages.
